@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Fiche Patient | Syslab</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- daterange picker -->
+  <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Bootstrap Color Picker -->
+  <link rel="stylesheet" href="../../plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="../../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="../../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <!-- Bootstrap4 Duallistbox -->
+  <link rel="stylesheet" href="../../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+
+<body class="hold-transition sidebar-mini">
+  <div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#">
+            <i class="fas fa-bars"></i>
+          </a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="#" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="#" class="nav-link">Contact</a>
+        </li>
+      </ul>
+
+      <!-- Right navbar links -->
+      <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item">
+
+          <a href={{path('fos_user_security_logout')}}>
+            <i class="fas fa-power-off"></i>
+          </a>
+
+        </li>
+      </ul>
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Brand Logo -->
+      <a href="#" class="brand-link">
+        <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+          style="opacity: .8">
+        <span class="brand-text font-weight-light">Laboratoire BAROUNI</span>
+      </a>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar user (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div class="image">
+            <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          </div>
+          <div class="info">
+            <a href="#" class="d-block">
+              {{app.user.nomLabo}}
+              -
+              <br>
+              {{app.user.username}}
+            </a>
+          </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
+																																																																													               with font-awesome or any other icon font library -->
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <p>
+                  Gestion Patient
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href={{path('AddPatient')}} class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Ajouter patient</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href={{path('ListePatient')}} class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Liste patients</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            {% if is_granted('ROLE_ADMIN') %}
+
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <p>
+                  Gestion Examen
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href={{path('AddExamen')}} class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Ajouter Examen</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href={{path('listeExamen')}} class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Liste examens</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <p>
+                  Gestion utilisateur
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href={{path('addUser')}} class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Ajouter utilisateur</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href={{path('listeUtilisateurs')}} class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Liste utilisateurs</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            {% endif %}
+          </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>Fiche Patient :
+                {{patient.nom}}
+                {{patient.prenom}}</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item">
+                  <a href="#">Home</a>
+                </li>
+                <li class="breadcrumb-item active">fiche patient</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <!-- /.container-fluid -->
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <!-- /.card-header -->
+              <div class="card-body">
+
+                <div style="float:right;">
+                  {{ render(controller( 'AdminBundle:Default:updateP', {  'request': app.request, 'id' : patient.id }))}}
+                </div>
+
+                {% if patient.status == "Traite" %}
+                <label class="badge badge-success"
+                  style="float:right; position: relative; top:2%; left:-1%; color:white; font-size:1,5em;">Dossier
+                  validé</label>
+                {% endif %}
+
+                <br>
+                <br>
+                <div id="printableArea">
+
+                  <center>
+                    <h1>Demande d'analyses médicales</h1>
+                  </center>
+                  <br>
+                  <center>
+                    <h3 style="position: relative;top: -20px;">
+                    Laboratoire Najib BAROUNI</h3>
+                  </center>
+
+                  <div style="position: relative;top: 39px;">
+                    <b>Correspondent</b>
+                    {{patient.user.nomLabo}}
+                    <br>
+                    <b>Reference : </b>
+                    {{patient.reference}}
+                  </div>
+                  <div style="float:right;">
+                    <b>Dossier
+                    {{patient.TypeDossier}} </b>
+                    <br>
+                    <b> Date saisie : </b>
+                    {{patient.createdAt | date('Y-m-d H:i:s') }}
+                    <br><br>
+                  </div>
+
+                  <table class="table table-striped">
+                    <tr class="table-info">
+                      <th>Informations Patient
+                      </th>
+                      <th>Informations prescripteur
+                      </th>
+                    </tr>
+                    <td>
+                      <b>
+                        Reference:
+                      </b>
+                      {{patient.reference}}
+                      <br>
+                      <br>
+                      <b>Civilité:</b>
+                      {{patient.civilite}}
+                      <br><br>
+                      <b>
+                        Nom:
+                      </b>
+                      {{patient.nom}}
+                      <br><br>
+                      <b>
+                        Prenom:
+                      </b>
+                      {{patient.prenom}}<br><br>
+                      <b>
+                        Sexe:</b>
+                      {{patient.sexe}}<br><br>
+                      <b>
+                        Date de naissance:</b>
+                      {{patient.dateDeNaissance | date("m/d/Y") }}<br><br>
+
+                    </td>
+
+                    <td>
+                      <b>
+                        Nom et prenom medecin:</b>
+                      {{patient.nomPrenomMed}}
+                      <br><br>
+
+                      <b>
+                        Adresse medecin:</b>
+                      {{patient.adressMed}}
+                      <br><br>
+
+                      <b>
+                        Tel:</b>
+                      {{patient.telMed}}
+                      <br><br>
+
+
+                      <b>
+                        Date ordenance:</b>
+                      {{patient.ordenance|date("m/d/Y")}}
+                      <br><br>
+
+                    </td>
+                  </table>
+                  <table class="table table-striped">
+
+                    <tr class="table-info">
+                      <th>Tubes</th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <th>Renseignements et traitements</th>
+                    </tr>
+
+                    <td>
+                      <b>Date de prélevement
+                      </b>
+                      {{patient.datePrelevement|date("m/d/Y")}}
+                      <br>
+                      <br>
+                      <table>
+                        <tr>
+                          <th>Type
+                          </th>
+                          <th>Nombre de tubes</th>
+                        </tr>
+                        <tr>
+                          <td>{{patient.TypeTube}}
+                          </td>
+                          <td>{{patient.nbTube}}
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <th>
+                      {% if patient.trimestre != NULL %}
+
+                      <b>
+                        Taille (cm)
+                      </b>
+                      {{patient.taille}}
+                      <br><br>
+                      <b>
+                        Poids (kg) :
+                      </b>
+                      {{patient.poids}}
+                      <br><br>
+                      <b>
+                        Nombre de foetus :
+                      </b>
+                      {{patient.foetus}}
+                      <br><br>
+                      <table>
+                        <tr>
+                          <th>Tabagisme</th>
+                          <th>Fiv</th>
+                          <th>Diabetique</th>
+                        </tr>
+                        <tr>
+                          <td>{{patient.tabagisme != 'non' ? 'oui' : 'non' }}</td>
+                          <td>{{patient.fiv != 'non'  ? 'oui' : 'non' }}
+                          </td>
+                          <td>{{patient.diabetique != 'non' ? 'oui' : 'non' }}</td>
+                        </tr>
+                        <tr>
+                          <th>AntecedentT18/13</th>
+                          <th>AntecedentT21</th>
+                          <th>AntecedentMTN</th>
+                        </tr>
+                        <tr>
+                          <td>{{patient.antecedentT1813 != 'non' ? 'oui' : 'non' }}
+                          </td>
+                          <td>{{patient.antecedentT21 != 'non' ? 'oui' : 'non' }}
+                          </td>
+                          <td>{{patient.antecedentMTN != 'non' ? 'oui' : 'non' }}</td>
+                        </tr>
+                      </table>
+                      <br>
+                      <b>Date échographique</b>
+                      {{patient.dateEcho|date("m/d/Y")}}
+                      <br><br>
+
+                      {% if patient.methodeDatation == "Date début grossesse"  %}
+
+                      <b>Age grossesse</b>
+                      {{patient.ageGrossesseSemaines}}
+                      semaines et
+                      {{patient.ageGrossesseJours}}
+                      jours
+                      <br><br>
+                      {% endif %}
+
+                       {% if patient.methodeDatation == "DDR"  %}
+                          {{patient.dateDdr|date("m/d/Y")}}
+                       {% endif %}
+
+                      {% if patient.methodeDatation == "Date de conception"  %}
+                      <b>
+                        date de conception
+                      </b>
+                      {{patient.dateDebConcep}}
+                      <br>
+                      <br>
+                      <b>
+                        Type de grossesse
+                      </b>
+                      {{patient.typeGrossesse}}
+                      <br>
+
+                      {% endif %}
+
+                      <b>{{patient.lCCPBD}}
+                        :
+                      </b>
+                      {{patient.lCCPBDValue}}
+                      <br>
+                      <b>Clarté nucale :
+                      </b>
+                      {{patient.clarteNucale}}
+                    </td>
+                    {% endif %}
+                  </table>
+
+                  <table class="table table-striped">
+                    <tr class="table-info">
+                      <th>Examen(s) demandé(s)</th>
+                    </tr>
+                    <td>
+                      {% for Examen in patient.Examen %}
+                      -
+                      <b>
+                        {{ Examen }}
+                        &nbsp &nbsp
+                      </b>
+                      {{ Examen.description }}
+                      <br>
+                      {% endfor %}
+                    </td>
+
+                  </table>
+                  <table class="table table-striped">
+                    <tr class="table-info">
+                      <th>Commentaires</th>
+                      <td></td>
+                    </tr>
+                  </table>
+
+                </div>
+                <button type="button" class="btn btn-dark btn-fw" style="float:right; position: relative; top:2%;"
+                  onclick="printDiv('printableArea')" />
+                <i class="mdi mdi-printer"></i>Imprimer</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- jQuery -->
+          <script src="../../plugins/jquery/jquery.min.js"></script>
+          <!-- Bootstrap 4 -->
+          <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+          <!-- DataTables -->
+          <script src="../../plugins/datatables/jquery.dataTables.js"></script>
+          <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+          <!-- AdminLTE App -->
+          <script src="../../dist/js/adminlte.min.js"></script>
+          <!-- AdminLTE for demo purposes -->
+          <script src="../../dist/js/demo.js"></script>
+          <!-- page script -->
+          <script>
+            $(function () {
+              $("#example1").DataTable();
+              $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false
+              });
+            });
+          </script>
+
+          <script>
+            function printDiv(divName) {
+              var printContents = document.getElementById(divName).innerHTML;
+              var originalContents = document.body.innerHTML;
+
+              document.body.innerHTML = printContents;
+
+              window.print();
+
+              document.body.innerHTML = originalContents;
+            }
+          </script>
+
+</html>

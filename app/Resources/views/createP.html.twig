@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Ajouter Patient | Syslab</title>
+	<!-- Tell the browser to be responsive to screen width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+	<!-- Ionicons -->
+	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+	<!-- daterange picker -->
+	<link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
+	<!-- iCheck for checkboxes and radio inputs -->
+	<link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+	<!-- Bootstrap Color Picker -->
+	<link rel="stylesheet" href="../../plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+	<!-- Tempusdominus Bbootstrap 4 -->
+	<link rel="stylesheet" href="../../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+	<!-- Select2 -->
+	<link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
+	<link rel="stylesheet" href="../../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+	<!-- Bootstrap4 Duallistbox -->
+	<link rel="stylesheet" href="../../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+	<!-- Theme style -->
+	<link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+	<!-- Google Font: Source Sans Pro -->
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+
+<body class="hold-transition sidebar-mini">
+	<div class="wrapper">
+		<!-- Navbar -->
+		<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+			<!-- Left navbar links -->
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" data-widget="pushmenu" href="#">
+						<i class="fas fa-bars"></i>
+					</a>
+				</li>
+				<li class="nav-item d-none d-sm-inline-block">
+					<a href="#" class="nav-link">Home</a>
+				</li>
+				<li class="nav-item d-none d-sm-inline-block">
+					<a href="#" class="nav-link">Contact</a>
+				</li>
+			</ul>
+
+			<!-- Right navbar links -->
+
+			<ul class="navbar-nav ml-auto">
+
+				<li class="nav-item">
+
+					<a href={{path('fos_user_security_logout')}}>
+						<i class="fas fa-power-off"></i>
+					</a>
+
+				</li>
+			</ul>
+		</nav>
+		<!-- /.navbar -->
+
+		<!-- Main Sidebar Container -->
+		<aside class="main-sidebar sidebar-dark-primary elevation-4">
+			<!-- Brand Logo -->
+			<a href="#" class="brand-link">
+				<img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
+					class="brand-image img-circle elevation-3" style="opacity: .8">
+				<span class="brand-text font-weight-light">Laboratoire BAROUNI</span>
+			</a>
+
+			<!-- Sidebar -->
+			<div class="sidebar">
+				<!-- Sidebar user (optional) -->
+				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+					<div class="image">
+						<img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+					</div>
+					<div class="info">
+						<a href="#" class="d-block">
+							{{app.user.nomLabo}}
+							-
+							<br>
+							{{app.user.username}}
+						</a>
+
+					</div>
+				</div>
+
+				<!-- Sidebar Menu -->
+				<nav class="mt-2">
+					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+						data-accordion="false">
+						<!-- Add icons to the links using the .nav-icon class
+																																																																																											               with font-awesome or any other icon font library -->
+						<li class="nav-item has-treeview">
+							<a href="#" class="nav-link">
+								<p>
+									Gestion Patient
+									<i class="fas fa-angle-left right"></i>
+								</p>
+							</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item">
+									<a href={{path('AddPatient')}} class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Ajouter patient</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href={{path('ListePatient')}} class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Liste patients</p>
+									</a>
+								</li>
+							</ul>
+						</li>
+						{% if is_granted('ROLE_ADMIN') %}
+
+								<li class="nav-item has-treeview">
+									<a href="#" class="nav-link">
+										<p>
+											Gestion Examen
+											<i class="fas fa-angle-left right"></i>
+										</p>
+									</a>
+									<ul class="nav nav-treeview">
+										<li class="nav-item">
+											<a href={{path('AddExamen')}} class="nav-link">
+												<i class="far fa-circle nav-icon"></i>
+												<p>Ajouter Examen</p>
+											</a>
+										</li>
+										<li class="nav-item">
+											<a href={{path('listeExamen')}} class="nav-link">
+												<i class="far fa-circle nav-icon"></i>
+												<p>Liste examens</p>
+											</a>
+										</li>
+									</ul>
+								</li>
+								<li class="nav-item has-treeview">
+									<a href="#" class="nav-link">
+										<p>
+											Gestion utilisateur
+											<i class="fas fa-angle-left right"></i>
+										</p>
+									</a>
+									<ul class="nav nav-treeview">
+										<li class="nav-item">
+											<a href={{path('addUser')}} class="nav-link">
+												<i class="far fa-circle nav-icon"></i>
+												<p>Ajouter utilisateur</p>
+											</a>
+										</li>
+										<li class="nav-item">
+											<a href={{path('listeUtilisateurs')}} class="nav-link">
+												<i class="far fa-circle nav-icon"></i>
+												<p>Liste utilisateurs</p>
+											</a>
+										</li>
+									</ul>
+								</li>
+							{% endif %}
+							</ul>
+						</li>
+					</ul>
+				</nav>
+				<!-- /.sidebar-menu -->
+			</div>
+			<!-- /.sidebar -->
+		</aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<h1>Insérer les informations du patient</h1>
+						</div>
+						<div class="col-sm-6">
+							<ol class="breadcrumb float-sm-right">
+								<li class="breadcrumb-item">
+									<a href="#">Home</a>
+								</li>
+								<li class="breadcrumb-item active">Ajouter Patient</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+				<!-- /.container-fluid -->
+			</section>
+
+			<!-- Main content -->
+			<section class="content">
+				<div class="container-fluid">
+					<font color="red">
+						<b>
+							{{message}}
+						</b> <br>
+					</font>
+					<br>
+					<div class="row">
+						<!-- left column -->
+						<div class="col-md-6">
+							<!-- general form elements -->
+							<div class="card card-success">
+								<div class="card-header">
+									<h4 class="card-title">Informations personelles</h4>
+								</div>
+								<!-- /.card-header -->
+								<!-- form start -->
+								<div class="card-body">
+									{{ form_start(formP) }}
+
+									<form class="forms-sample">
+
+										<div class="form-group">
+											<label for="exampleInputPassword1">Réference</label>
+											{{ form_widget(formP.reference)
+                                                            }}
+										</div>
+
+										<div class="form-group">
+											<label for="exampleInputPassword1">Civilité</label>
+											{{ form_widget(formP.civilite)
+                                                            }}
+										</div>
+
+										<div class="form-group">
+											<label for="exampleInputEmail1">Nom</label>
+
+											{{ form_widget(formP.nom,{'label':'Nom du patient','attr':{'class':'form-control'}})
+											}}
+											<br>
+										</div>
+										<div class="form-group">
+											<label for="exampleInputPassword1">Prenom</label>
+											{{ form_widget(formP.prenom,{'label':'Prenom du patient','attr':{'class':'form-control'}})
+											}}
+										</div>
+										<div class="form-group">
+											<label for="exampleInputPassword1">Sexe</label>
+											{{ form_widget(formP.sexe)}}
+										</div>
+
+										<div class="form-group">
+											<label for="exampleInputPassword1">Date de naissance</label>
+											{{ form_widget(formP.dateDeNaissance,{'label':'Prenom du patient','attr':{'class':'form-control'}})
+											}}
+										</div>
+								</div>
+							</div>
+							<!-- /.card -->
+
+							<!-- Form Element sizes -->
+							<div class="card card-success">
+								<div class="card-header">
+
+									<h4 class="card-title">Informations medecin</h4>
+								</div>
+								<div class="card-body">
+									<label for="exampleInputPassword1">Nom Prenom
+										medecin</label>
+									{{ form_widget(formP.nomPrenomMed,{'label':'Prenom du patient', 'attr':{'class':'form-control'}})
+									}}
+									<br>
+									<label for="exampleInputPassword1">Adresse
+										medecin</label>
+									{{ form_widget(formP.adressMed,{'label':'Prenom du patient','attr':{'class':'form-control'}})
+									}}
+									<br>
+									<label for="exampleInputPassword1">Tel
+										medecin</label>
+									{{ form_widget(formP.telMed,{'label':'Prenom du patient','attr':{'class':'form-control'}})
+									}}
+									<label for="exampleInputPassword1">
+										Ordonnance
+									</label>
+									{{ form_widget(formP.ordenance)}}
+								</div>
+								<!-- /.card-body -->
+							</div>
+							<!-- /.card -->
+
+						</div>
+						<!--/.col (left) -->
+						<!-- right column -->
+						<div class="col-md-6">
+							<!-- general form elements disabled -->
+							<!-- /.card -->
+							<div class="col-md grid-margin stretch-card">
+								<div class="card card-success">
+									<div class="card-header">
+
+										<h4 class="card-title">Informations analyse</h4>
+									</div>
+									<br>
+									<div class="card-body">
+										<form class="forms-sample">
+											<label for="exampleInputPassword1">
+												Date prélevement
+											</label>
+
+											{{ form_widget(formP.datePrelevement)}}
+											<br>
+
+											<label for="exampleInputPassword1">
+												Type Dossier
+											</label>
+
+											{{ form_widget(formP.type_dossier)}}
+											<br>
+
+											<div class="col-sm-9">
+
+												<label for="exampleInputPassword1">Examen (s)
+												</label>
+												{{ form_widget(formP.Examen)}}
+
+											</div>
+									
+											<br>
+											<div class="form-group">
+												<div class="form-group">
+													<label for="exampleInputPassword1">Type tube</label>
+													{{ form_widget(formP.type_tube)}}
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="form-group">
+													<label for="exampleInputPassword1">Nombre tubes</label>
+													{{ form_widget(formP.nb_tube)}}
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="exampleTextarea1">Traitement</label>
+												{{ form_widget(formP.traitement,{'label':'Prenom du patient','attr':{'class':'form-control'}})
+												}}
+											</div>
+
+											<div class="form-group">
+												<label for="exampleTextarea1">Commentaires</label> <br>
+												<small><i>Si le nom de l'examen ne figure pas dans la liste, vous pouvez
+														taper son nom ici </i></small>
+												{{ form_widget(formP.commentaires,{'label':'Prenom du patient','attr':{'class':'form-control'}})
+												}}
+											</div>
+									</div>
+								</div>
+								<!-- Form Element sizes -->
+								<div class="card card-success">
+									<div class="card-header">
+
+										<h4 class="card-title">Trisomie 21</h4>
+									</div>
+									<div class="card-body">
+
+										{{ form_widget(formP.trimestre)}}
+
+										<label for="exampleInputPassword1">Origine
+										</label>
+										{{ form_widget(formP.origine)}}
+										<br>
+										<div class="form-group">
+											<div class="form-group">
+												<label for="exampleInputPassword1">Taille</label>
+												{{ form_widget(formP.taille,{'label':'Prenom du patient','attr':{'class':'form-control'}})
+												}}
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="form-group">
+												<label for="exampleInputPassword1">poids</label>
+												{{ form_widget(formP.poids,{'label':'Prenom du patient','attr':{'class':'form-control'}})
+												}}
+											</div>
+										</div>
+
+										<div style="display:inline-flex;">
+											<label for="exampleInputPassword1">Tabagisme &nbsp &nbsp &nbsp &nbsp &nbsp
+											</label>
+											{{ form_widget(formP.tabagisme)}}
+										</div>
+										<br>
+										<hr>
+										<div style="display:inline-flex;">
+											<label for="exampleInputPassword1">FIV &nbsp &nbsp &nbsp &nbsp &nbsp
+											</label>
+											{{ form_widget(formP.fiv)}}
+										</div>
+										<br>
+										<hr>
+										<div style="display:inline-flex;">
+											<label for="exampleInputPassword1">
+												Diabetique &nbsp &nbsp &nbsp &nbsp &nbsp
+											</label>
+											{{ form_widget(formP.diabetique)}}
+										</div>
+										<br>
+										<hr>
+										<div style="display:inline-flex;">
+											<label for="exampleInputPassword1">AntecedentT18/13 &nbsp &nbsp &nbsp &nbsp
+												&nbsp
+											</label>
+											{{ form_widget(formP.antecedentT18_13)}}
+
+										</div>
+										<br>
+										<hr>
+										<div style="display:inline-flex;">
+											<label for="exampleInputPassword1">AntecedentT21 &nbsp &nbsp &nbsp &nbsp
+												&nbsp
+											</label>
+											{{ form_widget(formP.antecedentT21)}}
+										</div>
+										<br>
+										<hr>
+										<div style="display:inline-flex;">
+											<label for="exampleInputPassword1">
+												AntecedentMTN &nbsp &nbsp &nbsp &nbsp &nbsp
+											</label>
+											{{ form_widget(formP.antecedentMTN)}}
+											<br>
+											<hr>
+										</div>
+
+										<br>
+										<hr>
+										<br>
+
+										<label for="exampleInputPassword1">
+											Nombre foetus
+										</label>
+										{{ form_widget(formP.foetus)}}
+										<br>
+										<b>
+											Méthodes de datation
+										</b>
+
+										<div id="myRadioGroup">
+
+											<input type="radio" name="cars" value="twoCarDiv" />
+											DDR
+
+											<input type="radio" name="cars" value="threeCarDiv" />
+											Date début grossesse
+
+											<input type="radio" name="cars" value="fourCarDiv" />
+											Date echographique
+
+											<input type="radio" name="cars" value="fiveCarDiv" />
+											Date de conception
+											<br>
+											<div id="twoCarDiv" class="desc">
+												<br>
+												Date DDR
+												{{ form_widget(formP.date_ddr)}}
+
+											</div>
+
+											<div id="threeCarDiv" class="desc">
+												<br>
+												Age de grossesse en semaines
+												{{ form_widget(formP.age_grossesse_semaines)}}
+
+												Age de grossesse en jours
+												{{ form_widget(formP.age_grossesse_jours)}}
+											</div>
+
+											<div id="fourCarDiv" class="desc"></div>
+
+											<div id="fiveCarDiv" class="desc">
+												<br>
+												Date début conception
+												{{ form_widget(formP.date_deb_concep)}}
+												<br>
+												{{ form_widget(formP.type_grossesse)}}
+											</div>
+											<br>
+											Date échographie
+											{{ form_widget(formP.date_echo)}}
+										</div> <br>
+										<div style='display:flex;'>
+											<div style="    margin-top: 2%;">
+												{{ form_widget(formP.LCC_PBD)}}
+											</div>
+											<div style="margin-left:5%;width: 25%;">
+												{{ form_widget(formP.LCC_PBD_value)}}
+											</div>
+										</div>
+										<br><b>
+											Clarté nucale</b>
+										{{ form_widget(formP.Clarte_nucale)}}
+
+									</div>
+									<!-- /.card-body -->
+								</div>
+								<!-- /.card -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<button type="submit" class="btn btn-success" style="float:right;">Enregistrer</button>
+				{{ form_end(formP) }}
+				<br>
+				</form>
+
+		</div>
+
+
+		<!-- content-wrapper ends -->
+		<!-- partial -->
+	</div>
+	<!-- main-panel ends -->
+	</div>
+	<!-- page-body-wrapper ends -->
+
+	</div>
+	</div><!-- /.content-wrapper -->
+
+		</div><!-- ./wrapper -->
+		<!-- jQuery -->
+		<script src="../../plugins/jquery/jquery.min.js"></script><!-- Bootstrap 4 -->
+		<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js">
+		</script><!-- Select2 -->
+		<script src="../../plugins/select2/js/select2.full.min.js">
+		</script><!-- Bootstrap4 Duallistbox -->
+		<script src="../../plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+		<!-- InputMask -->
+		<script src="../../plugins/moment/moment.min.js"></script>
+		<script src="../../plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script><!-- date-range-picker -->
+		<script src="../../plugins/daterangepicker/daterangepicker.js"></script><!-- bootstrap color picker -->
+		<script src="../../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+		<!-- Tempusdominus Bootstrap 4 -->
+		<script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+		<!-- Bootstrap Switch -->
+		<script src="../../plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script><!-- AdminLTE App -->
+		<script src="../../dist/js/adminlte.min.js"></script><!-- AdminLTE for demo purposes -->
+		<script src="../../dist/js/demo.js"></script><!-- Page script -->
+		<script>
+			$(function () { // Initialize Select2 Elements
+
+
+				$('.select2').select2();
+			});
+		</script>
+		<script>
+			$(document).ready(function () {
+				$("div.desc").hide();
+				$("input[name$='cars']").click(function () {
+					var test = $(this).val();
+					$("div.desc").hide();
+					$("#" + test).show();
+				});
+			});
+		</script>
+</body>
+
+</html>

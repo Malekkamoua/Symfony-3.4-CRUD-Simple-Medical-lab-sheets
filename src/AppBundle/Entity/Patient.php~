@@ -1,0 +1,1317 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Patient
+ *
+ * @ORM\Table(name="patient")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PatientRepository")
+ */
+
+class Patient
+{
+
+    // ---------------------- informations generales patient  ----------------- //
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="reference", type="string", length=255)
+     */
+    private $reference;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=255)
+     */
+    private $nom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="prenom", type="string", length=255)
+     */
+    private $prenom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sexe", type="string", length=255)
+     */
+    private $sexe;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="civilite", type="string", length=255)
+     */
+    private $civilite;
+
+   
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_de_naissance", type="datetime")
+     */
+    private $dateDeNaissance;
+
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datePrelevement", type="datetime")
+     */
+    private $datePrelevement;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="ordenance", type="datetime")
+     */
+    private $ordenance;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nomPrenomMed", type="string", length=255,nullable=true)
+     */
+    private $nomPrenomMed;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telMed", type="integer",nullable=true)
+     */
+    private $telMed;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adressMed", type="string", length=255,nullable=true)
+     */
+    private $adressMed;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="taille", type="float", nullable = true)
+     */
+    private $taille;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="poids", type="float", nullable = true)
+     */
+    private $poids;
+
+    // ------------------------------ Trisomie 21 ---------------------------------
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="origine", type="string", length=255,nullable=true)
+     */
+    private $origine = 'NORTH-AFRICAN';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="LCC_PBD", type="string", nullable=true)
+     */
+    private $LCC_PBD;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="LCC_PBD_value", type="integer",nullable=true)
+     */
+    private $LCC_PBD_value;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Clarte_nucale", type="string", nullable=true)
+     */
+    private $Clarte_nucale;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="trimestre", type="integer",nullable=true)
+     */
+    private $trimestre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tabagisme", type="string", length=255,nullable=true)
+     */
+    private $tabagisme = 'non';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fiv", type="string", length=255,nullable=true)
+     */
+    private $fiv = 'non';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="diabetique", type="string", length=255,nullable=true)
+     */
+    private $diabetique = 'non';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="antecedentT18_13", type="string", length=255,nullable=true)
+     */
+    private $antecedentT18_13 = 'indéterminé';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="antecedentT21", type="string", length=255,nullable=true)
+     */
+    private $antecedentT21 = 'indéterminé';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="antecedentMTN", type="string", length=255,nullable=true)
+     */
+    private $antecedentMTN = 'indéterminé';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="foetus", type="integer",nullable=true)
+     */
+    private $foetus = NULL;
+
+    // ------------------ methode de datation -------------------------------- //
+
+       /**
+     * @var string
+     *
+     * @ORM\Column(name="methodeDatation", type="string", length=255, nullable=true)
+     */
+     private $methodeDatation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="date_ddr", type="datetime", length=255,nullable=true)
+     */
+    private $date_ddr = NULL;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="date_echo", type="datetime", length=255,nullable=true)
+     */
+    private $date_echo = NULL;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="age_grossesse_semaines", type="integer",nullable=true)
+     */
+    private $age_grossesse_semaines = NULL;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="age_grossesse_jours", type="integer",nullable=true)
+     */
+    private $age_grossesse_jours = NULL;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="date_deb_concep", type="datetime", length=255, nullable=true)
+     */
+    private $date_deb_concep = NULL;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type_grossesse", type="string", length=255, nullable=true)
+     */
+    private $type_grossesse = NULL;
+    
+
+    // -------------------- Informations analyses ---------------------- //
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type_tube", type="string", length=255)
+     */
+    private $type_tube;
+
+     /**
+     *
+     * @ORM\Column(name="nb_tube", type="integer")
+     */
+    private $nb_tube;
+
+
+     /**
+     *
+     * @ORM\Column(name="type_dossier", type="string")
+     */
+    private $type_dossier;
+    
+
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="commentaires", type="string", length=255,nullable=true)
+     */
+    private $commentaires;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="traitement", type="string", length=255, nullable=true)
+     */
+    private $traitement;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=255)
+     */
+    private $status = "nonTraite";
+
+      /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="createdAt", type="datetime")
+     */
+    private $createdAt;
+
+      /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Examen", inversedBy="Patient", cascade={"persist", "merge"})
+     * @ORM\JoinTable(name="Examen_Patient",
+     *   joinColumns={@ORM\JoinColumn(name="Patient_id", referencedColumnName="id")},
+     *   inverseJoinColumns={@ORM\JoinColumn(name="Examen_id", referencedColumnName="id")}
+     * )
+     */
+    private $Examen;
+
+
+    /**
+    * @ORM\ManyToOne(targetEntity="User", inversedBy="Patient")
+    * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+    */
+   private $User;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->Examen = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     *
+     * @return Patient
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set prenom
+     *
+     * @param string $prenom
+     *
+     * @return Patient
+     */
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
+     * Get prenom
+     *
+     * @return string
+     */
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
+
+    /**
+     * Set sexe
+     *
+     * @param string $sexe
+     *
+     * @return Patient
+     */
+    public function setSexe($sexe)
+    {
+        $this->sexe = $sexe;
+
+        return $this;
+    }
+
+    /**
+     * Get sexe
+     *
+     * @return string
+     */
+    public function getSexe()
+    {
+        return $this->sexe;
+    }
+
+    /**
+     * Set civilite
+     *
+     * @param string $civilite
+     *
+     * @return Patient
+     */
+    public function setCivilite($civilite)
+    {
+        $this->civilite = $civilite;
+
+        return $this;
+    }
+
+    /**
+     * Get civilite
+     *
+     * @return string
+     */
+    public function getCivilite()
+    {
+        return $this->civilite;
+    }
+
+    /**
+     * Set commentaires
+     *
+     * @param string $commentaires
+     *
+     * @return Patient
+     */
+    public function setCommentaires($commentaires)
+    {
+        $this->commentaires = $commentaires;
+
+        return $this;
+    }
+
+    /**
+     * Get commentaires
+     *
+     * @return string
+     */
+    public function getCommentaires()
+    {
+        return $this->commentaires;
+    }
+
+    /**
+     * Set dateDeNaissance
+     *
+     * @param \DateTime $dateDeNaissance
+     *
+     * @return Patient
+     */
+    public function setDateDeNaissance($dateDeNaissance)
+    {
+        $this->dateDeNaissance = $dateDeNaissance;
+
+        return $this;
+    }
+
+    /**
+     * Get dateDeNaissance
+     *
+     * @return \DateTime
+     */
+    public function getDateDeNaissance()
+    {
+        return $this->dateDeNaissance;
+    }
+
+    /**
+     * Set ordenance
+     *
+     * @param \DateTime $ordenance
+     *
+     * @return Patient
+     */
+    public function setOrdenance($ordenance)
+    {
+        $this->ordenance = $ordenance;
+
+        return $this;
+    }
+
+    /**
+     * Get ordenance
+     *
+     * @return \DateTime
+     */
+    public function getOrdenance()
+    {
+        return $this->ordenance;
+    }
+
+    /**
+     * Set nomPrenomMed
+     *
+     * @param string $nomPrenomMed
+     *
+     * @return Patient
+     */
+    public function setNomPrenomMed($nomPrenomMed)
+    {
+        $this->nomPrenomMed = $nomPrenomMed;
+
+        return $this;
+    }
+
+    /**
+     * Get nomPrenomMed
+     *
+     * @return string
+     */
+    public function getNomPrenomMed()
+    {
+        return $this->nomPrenomMed;
+    }
+
+    /**
+     * Set telMed
+     *
+     * @param integer $telMed
+     *
+     * @return Patient
+     */
+    public function setTelMed($telMed)
+    {
+        $this->telMed = $telMed;
+
+        return $this;
+    }
+
+    /**
+     * Get telMed
+     *
+     * @return integer
+     */
+    public function getTelMed()
+    {
+        return $this->telMed;
+    }
+
+    /**
+     * Set adressMed
+     *
+     * @param string $adressMed
+     *
+     * @return Patient
+     */
+    public function setAdressMed($adressMed)
+    {
+        $this->adressMed = $adressMed;
+
+        return $this;
+    }
+
+    /**
+     * Get adressMed
+     *
+     * @return string
+     */
+    public function getAdressMed()
+    {
+        return $this->adressMed;
+    }
+
+    /**
+     * Set taille
+     *
+     * @param float $taille
+     *
+     * @return Patient
+     */
+    public function setTaille($taille)
+    {
+        $this->taille = $taille;
+
+        return $this;
+    }
+
+    /**
+     * Get taille
+     *
+     * @return float
+     */
+    public function getTaille()
+    {
+        return $this->taille;
+    }
+
+    /**
+     * Set poids
+     *
+     * @param float $poids
+     *
+     * @return Patient
+     */
+    public function setPoids($poids)
+    {
+        $this->poids = $poids;
+
+        return $this;
+    }
+
+    /**
+     * Get poids
+     *
+     * @return float
+     */
+    public function getPoids()
+    {
+        return $this->poids;
+    }
+
+    /**
+     * Set traitement
+     *
+     * @param string $traitement
+     *
+     * @return Patient
+     */
+    public function setTraitement($traitement)
+    {
+        $this->traitement = $traitement;
+
+        return $this;
+    }
+
+    /**
+     * Get traitement
+     *
+     * @return string
+     */
+    public function getTraitement()
+    {
+        return $this->traitement;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     *
+     * @return Patient
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set typeTube
+     *
+     * @param string $typeTube
+     *
+     * @return Patient
+     */
+    public function setTypeTube($typeTube)
+    {
+        $this->type_tube = $typeTube;
+
+        return $this;
+    }
+
+    /**
+     * Get typeTube
+     *
+     * @return string
+     */
+    public function getTypeTube()
+    {
+        return $this->type_tube;
+    }
+
+    /**
+     * Set nbTube
+     *
+     * @param integer $nbTube
+     *
+     * @return Patient
+     */
+    public function setNbTube($nbTube)
+    {
+        $this->nb_tube = $nbTube;
+
+        return $this;
+    }
+
+    /**
+     * Get nbTube
+     *
+     * @return integer
+     */
+    public function getNbTube()
+    {
+        return $this->nb_tube;
+    }
+
+    /**
+     * Set typeDossier
+     *
+     * @param string $typeDossier
+     *
+     * @return Patient
+     */
+    public function setTypeDossier($typeDossier)
+    {
+        $this->type_dossier = $typeDossier;
+
+        return $this;
+    }
+
+    /**
+     * Get typeDossier
+     *
+     * @return string
+     */
+    public function getTypeDossier()
+    {
+        return $this->type_dossier;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Patient
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Add examan
+     *
+     * @param \AppBundle\Entity\Examen $examan
+     *
+     * @return Patient
+     */
+    public function addExaman(\AppBundle\Entity\Examen $examan)
+    {
+        $this->Examen[] = $examan;
+
+        return $this;
+    }
+
+    /**
+     * Remove examan
+     *
+     * @param \AppBundle\Entity\Examen $examan
+     */
+    public function removeExaman(\AppBundle\Entity\Examen $examan)
+    {
+        $this->Examen->removeElement($examan);
+    }
+
+    /**
+     * Get examen
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getExamen()
+    {
+        return $this->Examen;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Patient
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->User = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->User;
+    }
+
+    /**
+     * Set reference
+     *
+     * @param string $reference
+     *
+     * @return Patient
+     */
+    public function setReference($reference)
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    /**
+     * Get reference
+     *
+     * @return string
+     */
+    public function getReference()
+    {
+        return $this->reference;
+    }
+
+    /**
+     * Set origine
+     *
+     * @param string $origine
+     *
+     * @return Patient
+     */
+    public function setOrigine($origine)
+    {
+        $this->origine = $origine;
+
+        return $this;
+    }
+
+    /**
+     * Get origine
+     *
+     * @return string
+     */
+    public function getOrigine()
+    {
+        return $this->origine;
+    }
+
+    /**
+     * Set tabagisme
+     *
+     * @param string $tabagisme
+     *
+     * @return Patient
+     */
+    public function setTabagisme($tabagisme)
+    {
+        $this->tabagisme = $tabagisme;
+
+        return $this;
+    }
+
+    /**
+     * Get tabagisme
+     *
+     * @return string
+     */
+    public function getTabagisme()
+    {
+        return $this->tabagisme;
+    }
+
+    /**
+     * Set fiv
+     *
+     * @param string $fiv
+     *
+     * @return Patient
+     */
+    public function setFiv($fiv)
+    {
+        $this->fiv = $fiv;
+
+        return $this;
+    }
+
+    /**
+     * Get fiv
+     *
+     * @return string
+     */
+    public function getFiv()
+    {
+        return $this->fiv;
+    }
+
+    /**
+     * Set diabetique
+     *
+     * @param string $diabetique
+     *
+     * @return Patient
+     */
+    public function setDiabetique($diabetique)
+    {
+        $this->diabetique = $diabetique;
+
+        return $this;
+    }
+
+    /**
+     * Get diabetique
+     *
+     * @return string
+     */
+    public function getDiabetique()
+    {
+        return $this->diabetique;
+    }
+
+
+    /**
+     * Set antecedentT21
+     *
+     * @param string $antecedentT21
+     *
+     * @return Patient
+     */
+    public function setAntecedentT21($antecedentT21)
+    {
+        $this->antecedentT21 = $antecedentT21;
+
+        return $this;
+    }
+
+    /**
+     * Get antecedentT21
+     *
+     * @return string
+     */
+    public function getAntecedentT21()
+    {
+        return $this->antecedentT21;
+    }
+
+    /**
+     * Set antecedentMTN
+     *
+     * @param string $antecedentMTN
+     *
+     * @return Patient
+     */
+    public function setAntecedentMTN($antecedentMTN)
+    {
+        $this->antecedentMTN = $antecedentMTN;
+
+        return $this;
+    }
+
+    /**
+     * Get antecedentMTN
+     *
+     * @return string
+     */
+    public function getAntecedentMTN()
+    {
+        return $this->antecedentMTN;
+    }
+
+    /**
+     * Set foetus
+     *
+     * @param integer $foetus
+     *
+     * @return Patient
+     */
+    public function setFoetus($foetus)
+    {
+        $this->foetus = $foetus;
+
+        return $this;
+    }
+
+    /**
+     * Get foetus
+     *
+     * @return integer
+     */
+    public function getFoetus()
+    {
+        return $this->foetus;
+    }
+
+    /**
+     * Set dateDdr
+     *
+     * @param string $dateDdr
+     *
+     * @return Patient
+     */
+    public function setDateDdr($dateDdr)
+    {
+        $this->date_ddr = $dateDdr;
+
+        return $this;
+    }
+
+    /**
+     * Get dateDdr
+     *
+     * @return string
+     */
+    public function getDateDdr()
+    {
+        return $this->date_ddr;
+    }
+
+    /**
+     * Set dateEcho
+     *
+     * @param string $dateEcho
+     *
+     * @return Patient
+     */
+    public function setDateEcho($dateEcho)
+    {
+        $this->date_echo = $dateEcho;
+
+        return $this;
+    }
+
+    /**
+     * Get dateEcho
+     *
+     * @return string
+     */
+    public function getDateEcho()
+    {
+        return $this->date_echo;
+    }
+
+    /**
+     * Set ageGrossesseSemaines
+     *
+     * @param integer $ageGrossesseSemaines
+     *
+     * @return Patient
+     */
+    public function setAgeGrossesseSemaines($ageGrossesseSemaines)
+    {
+        $this->age_grossesse_semaines = $ageGrossesseSemaines;
+
+        return $this;
+    }
+
+    /**
+     * Get ageGrossesseSemaines
+     *
+     * @return integer
+     */
+    public function getAgeGrossesseSemaines()
+    {
+        return $this->age_grossesse_semaines;
+    }
+
+    /**
+     * Set ageGrossesseJours
+     *
+     * @param integer $ageGrossesseJours
+     *
+     * @return Patient
+     */
+    public function setAgeGrossesseJours($ageGrossesseJours)
+    {
+        $this->age_grossesse_jours = $ageGrossesseJours;
+
+        return $this;
+    }
+
+    /**
+     * Get ageGrossesseJours
+     *
+     * @return integer
+     */
+    public function getAgeGrossesseJours()
+    {
+        return $this->age_grossesse_jours;
+    }
+
+    /**
+     * Set dateDebConcep
+     *
+     * @param string $dateDebConcep
+     *
+     * @return Patient
+     */
+    public function setDateDebConcep($dateDebConcep)
+    {
+        $this->date_deb_concep = $dateDebConcep;
+
+        return $this;
+    }
+
+    /**
+     * Get dateDebConcep
+     *
+     * @return string
+     */
+    public function getDateDebConcep()
+    {
+        return $this->date_deb_concep;
+    }
+
+    /**
+     * Set typeGrossesse
+     *
+     * @param string $typeGrossesse
+     *
+     * @return Patient
+     */
+    public function setTypeGrossesse($typeGrossesse)
+    {
+        $this->type_grossesse = $typeGrossesse;
+
+        return $this;
+    }
+
+    /**
+     * Get typeGrossesse
+     *
+     * @return string
+     */
+    public function getTypeGrossesse()
+    {
+        return $this->type_grossesse;
+    }
+
+    /**
+     * Set antecedentT1813
+     *
+     * @param string $antecedentT1813
+     *
+     * @return Patient
+     */
+    public function setAntecedentT1813($antecedentT1813)
+    {
+        $this->antecedentT18_13 = $antecedentT1813;
+
+        return $this;
+    }
+
+    /**
+     * Get antecedentT1813
+     *
+     * @return string
+     */
+    public function getAntecedentT1813()
+    {
+        return $this->antecedentT18_13;
+    }
+
+    /**
+     * Set trimestre
+     *
+     * @param integer $trimestre
+     *
+     * @return Patient
+     */
+    public function setTrimestre($trimestre)
+    {
+        $this->trimestre = $trimestre;
+
+        return $this;
+    }
+
+    /**
+     * Get trimestre
+     *
+     * @return integer
+     */
+    public function getTrimestre()
+    {
+        return $this->trimestre;
+    }
+
+    /**
+     * Set datePrelevement
+     *
+     * @param \DateTime $datePrelevement
+     *
+     * @return Patient
+     */
+    public function setDatePrelevement($datePrelevement)
+    {
+        $this->datePrelevement = $datePrelevement;
+
+        return $this;
+    }
+
+    /**
+     * Get datePrelevement
+     *
+     * @return \DateTime
+     */
+    public function getDatePrelevement()
+    {
+        return $this->datePrelevement;
+    }
+
+    /**
+     * Set lCCPBD
+     *
+     * @param float $lCCPBD
+     *
+     * @return Patient
+     */
+    public function setLCCPBD($lCCPBD)
+    {
+        $this->LCC_PBD = $lCCPBD;
+
+        return $this;
+    }
+
+    /**
+     * Get lCCPBD
+     *
+     * @return float
+     */
+    public function getLCCPBD()
+    {
+        return $this->LCC_PBD;
+    }
+
+    /**
+     * Set clarteNucale
+     *
+     * @param float $clarteNucale
+     *
+     * @return Patient
+     */
+    public function setClarteNucale($clarteNucale)
+    {
+        $this->Clarte_nucale = $clarteNucale;
+
+        return $this;
+    }
+
+    /**
+     * Get clarteNucale
+     *
+     * @return float
+     */
+    public function getClarteNucale()
+    {
+        return $this->Clarte_nucale;
+    }
+
+    /**
+     * Set lCCPBDValue
+     *
+     * @param integer $lCCPBDValue
+     *
+     * @return Patient
+     */
+    public function setLCCPBDValue($lCCPBDValue)
+    {
+        $this->LCC_PBD_value = $lCCPBDValue;
+
+        return $this;
+    }
+
+    /**
+     * Get lCCPBDValue
+     *
+     * @return integer
+     */
+    public function getLCCPBDValue()
+    {
+        return $this->LCC_PBD_value;
+    }
+}

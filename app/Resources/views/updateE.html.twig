@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="../../plugins/select2/js/select2.full.min.js"></script><!-- Bootstrap4 Duallistbox -->
+
+</head>
+
+<body>
+ <div class="bd-example">
+        <button type="button" class="btn btn-primary"  id="modifyButton" data-toggle="modal" data-target="#exampleModal{{ examen.id }}" data-whatever="@getbootstrap"><i class="fa fa-edit"></i> </button>
+
+        <div class="modal fade" id="exampleModal{{ examen.id }}"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <br><br><br>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="exampleModalLabel">Modfier Examen</h4>
+                    </div>
+                    <div class="modal-body">
+
+                            {{ form_start(formE) }}
+                       
+                        {{ form_widget(formE) }}
+
+                    </div>
+                  
+                    {{ form_end(formE) }}
+
+                </div>
+            </div>
+        </div>
+    </div>

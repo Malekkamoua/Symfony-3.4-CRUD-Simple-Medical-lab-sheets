@@ -1,0 +1,75 @@
+AddPatient:
+  path:     /addPatient
+  defaults: { _controller: AdminBundle:Default:createP }  
+  
+ShowPatient:
+  path:     /showPatient/{id}
+  defaults: { _controller: AdminBundle:Default:showP }  
+
+addUser: 
+    path:    addUser
+    defaults: { _controller: AdminBundle:Default:addUser }
+
+editUser: 
+    path:    editUser/{id}
+    defaults: { _controller: AdminBundle:Default:updateUser }
+
+deleteUser: 
+    path:    deleteUser/{id}
+    defaults: { _controller: AdminBundle:Default:deleteUser }
+
+listeUtilisateurs:
+    path:    listeUtilisateurs
+    defaults: { _controller: AdminBundle:Default:listeUtilisateurs }
+
+Patient_edit:
+    path:    patient/edit/{id}
+    defaults: { _controller: AdminBundle:Default:createP }
+
+Patient_update:
+    path:    patient/update/{id}
+    defaults: { _controller: AdminBundle:Default:updateP }
+
+valider_Patient:
+    path:     valide/{id}
+    defaults : { _controller: AdminBundle:Default:valideP } 
+    
+searchPatient:
+    path:     /search
+    defaults : { _controller: AdminBundle:Default:searchP } 
+
+deleteP:
+    path:     /deletePatient/{id}
+    defaults: { _controller: AdminBundle:Default:deleteP }
+
+ListePatient:
+  path:     /listePatient
+  defaults: { _controller: AdminBundle:Default:listePatient }  
+
+AddExamen:
+  path:     admin/addExamen
+  defaults: { _controller: AdminBundle:Default:createE }  
+
+Examen_edit:
+  path:     admin/examen/editing/{id}
+  defaults: { _controller: AdminBundle:Default:updateE }  
+  
+ShowExamen:
+  path:     admin/showExamen/{id}
+  defaults: { _controller: AdminBundle:Default:showE }  
+
+Examen_edit1:
+    path:    admin/examen/edit/{id}
+    defaults: { _controller: AdminBundle:Default:createE }
+
+deleteE:
+    path:     admin/deleteExamen/{id}
+    defaults: { _controller: AdminBundle:Default:deleteE }
+
+listeExamen:
+  path:     admin/listeExamen
+  defaults: { _controller: AdminBundle:Default:listeExamen } 
+
+searchExam:
+    path:     admin/searchE
+    defaults : { _controller: AdminBundle:Default:searchE } 

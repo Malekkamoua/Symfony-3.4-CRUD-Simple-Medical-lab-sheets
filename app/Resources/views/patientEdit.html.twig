@@ -1,0 +1,335 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<h1>Insérer les informations du patient</h1>
+						</div>
+						<div class="col-sm-6">
+							<ol class="breadcrumb float-sm-right">
+								<li class="breadcrumb-item">
+									<a href="#">Home</a>
+								</li>
+								<li class="breadcrumb-item active">Ajouter Patient</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+				<!-- /.container-fluid -->
+			</section>
+
+			<!-- Main content -->
+			<section class="content">
+				<div class="container-fluid">
+							<div class="row">
+						<!-- left column -->
+						<div class="col-md-6">
+							<!-- general form elements -->
+							<div class="card card-success">
+								<div class="card-header">
+									<h4 class="card-title">Informations personelles</h4>
+								</div>
+								<!-- /.card-header -->
+								<!-- form start -->
+								<div class="card-body">
+									{{ form_start(formP) }}
+
+									<form class="forms-sample">
+
+										<div class="form-group">
+											<label for="exampleInputPassword1">Réference</label>
+											{{ form_widget(formP.reference)
+                                                            }}
+										</div>
+
+										<div class="form-group">
+											<label for="exampleInputPassword1">Civilité</label>
+											{{ form_widget(formP.civilite)
+                                                            }}
+										</div>
+
+										<div class="form-group">
+											<label for="exampleInputEmail1">Nom</label>
+
+											{{ form_widget(formP.nom,{'label':'Nom du patient','attr':{'class':'form-control'}})
+											}}
+											<br>
+										</div>
+										<div class="form-group">
+											<label for="exampleInputPassword1">Prenom</label>
+											{{ form_widget(formP.prenom,{'label':'Prenom du patient','attr':{'class':'form-control'}})
+											}}
+										</div>
+										<div class="form-group">
+											<label for="exampleInputPassword1">Sexe</label>
+											{{ form_widget(formP.sexe)}}
+										</div>
+
+										<div class="form-group">
+											<label for="exampleInputPassword1">Date de naissance</label>
+											{{ form_widget(formP.dateDeNaissance,{'label':'Prenom du patient','attr':{'class':'form-control'}})
+											}}
+										</div>
+								</div>
+							</div>
+							<!-- /.card -->
+
+							<!-- Form Element sizes -->
+							<div class="card card-success">
+								<div class="card-header">
+
+									<h4 class="card-title">Informations medecin</h4>
+								</div>
+								<div class="card-body">
+									<label for="exampleInputPassword1">Nom Prenom
+										medecin</label>
+									{{ form_widget(formP.nomPrenomMed,{'label':'Prenom du patient', 'attr':{'class':'form-control'}})
+									}}
+									<br>
+									<label for="exampleInputPassword1">Adresse
+										medecin</label>
+									{{ form_widget(formP.adressMed,{'label':'Prenom du patient','attr':{'class':'form-control'}})
+									}}
+									<br>
+									<label for="exampleInputPassword1">Tel
+										medecin</label>
+									{{ form_widget(formP.telMed,{'label':'Prenom du patient','attr':{'class':'form-control'}})
+									}}
+									<label for="exampleInputPassword1">
+										Ordonnance
+									</label>
+									{{ form_widget(formP.ordenance)}}
+								</div>
+								<!-- /.card-body -->
+							</div>
+							<!-- /.card -->
+
+						</div>
+						<!--/.col (left) -->
+						<!-- right column -->
+						<div class="col-md-6">
+							<!-- general form elements disabled -->
+							<!-- /.card -->
+							<div class="col-md grid-margin stretch-card">
+								<div class="card card-success">
+									<div class="card-header">
+
+										<h4 class="card-title">Informations analyse</h4>
+									</div>
+									<br>
+									<div class="card-body">
+										<form class="forms-sample">
+											<label for="exampleInputPassword1">
+												Date prélevement
+											</label>
+
+											{{ form_widget(formP.datePrelevement)}}
+											<br>
+
+											<label for="exampleInputPassword1">
+												Type Dossier
+											</label>
+
+											{{ form_widget(formP.type_dossier)}}
+											<br>
+
+											<div class="col-sm-9">
+
+												<label for="exampleInputPassword1">Examen (s)
+												</label>
+												{{ form_widget(formP.Examen)}}
+
+											</div>
+									
+											<br>
+											<div class="form-group">
+												<div class="form-group">
+													<label for="exampleInputPassword1">Type tube</label>
+													{{ form_widget(formP.type_tube)}}
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="form-group">
+													<label for="exampleInputPassword1">Nombre tubes</label>
+													{{ form_widget(formP.nb_tube)}}
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="exampleTextarea1">Traitement</label>
+												{{ form_widget(formP.traitement,{'label':'Prenom du patient','attr':{'class':'form-control'}})
+												}}
+											</div>
+
+											<div class="form-group">
+												<label for="exampleTextarea1">Commentaires</label> <br>
+												<small><i>Si le nom de l'examen ne figure pas dans la liste, vous pouvez
+														taper son nom ici </i></small>
+												{{ form_widget(formP.commentaires,{'label':'Prenom du patient','attr':{'class':'form-control'}})
+												}}
+											</div>
+									</div>
+								</div>
+								<!-- Form Element sizes -->
+								<div class="card card-success">
+									<div class="card-header">
+
+										<h4 class="card-title">Trisomie 21</h4>
+									</div>
+									<div class="card-body">
+
+										{{ form_widget(formP.trimestre)}}
+
+										<label for="exampleInputPassword1">Origine
+										</label>
+										{{ form_widget(formP.origine)}}
+										<br>
+										<div class="form-group">
+											<div class="form-group">
+												<label for="exampleInputPassword1">Taille</label>
+												{{ form_widget(formP.taille,{'label':'Prenom du patient','attr':{'class':'form-control'}})
+												}}
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="form-group">
+												<label for="exampleInputPassword1">poids</label>
+												{{ form_widget(formP.poids,{'label':'Prenom du patient','attr':{'class':'form-control'}})
+												}}
+											</div>
+										</div>
+
+										<div style="display:inline-flex;">
+											<label for="exampleInputPassword1">Tabagisme &nbsp &nbsp &nbsp &nbsp &nbsp
+											</label>
+											{{ form_widget(formP.tabagisme)}}
+										</div>
+										<br>
+										<hr>
+										<div style="display:inline-flex;">
+											<label for="exampleInputPassword1">FIV &nbsp &nbsp &nbsp &nbsp &nbsp
+											</label>
+											{{ form_widget(formP.fiv)}}
+										</div>
+										<br>
+										<hr>
+										<div style="display:inline-flex;">
+											<label for="exampleInputPassword1">
+												Diabetique &nbsp &nbsp &nbsp &nbsp &nbsp
+											</label>
+											{{ form_widget(formP.diabetique)}}
+										</div>
+										<br>
+										<hr>
+										<div style="display:inline-flex;">
+											<label for="exampleInputPassword1">AntecedentT18/13 &nbsp &nbsp &nbsp &nbsp
+												&nbsp
+											</label>
+											{{ form_widget(formP.antecedentT18_13)}}
+
+										</div>
+										<br>
+										<hr>
+										<div style="display:inline-flex;">
+											<label for="exampleInputPassword1">AntecedentT21 &nbsp &nbsp &nbsp &nbsp
+												&nbsp
+											</label>
+											{{ form_widget(formP.antecedentT21)}}
+										</div>
+										<br>
+										<hr>
+										<div style="display:inline-flex;">
+											<label for="exampleInputPassword1">
+												AntecedentMTN &nbsp &nbsp &nbsp &nbsp &nbsp
+											</label>
+											{{ form_widget(formP.antecedentMTN)}}
+											<br>
+											<hr>
+										</div>
+
+										<br>
+										<hr>
+										<br>
+
+										<label for="exampleInputPassword1">
+											Nombre foetus
+										</label>
+										{{ form_widget(formP.foetus)}}
+										<br>
+										<b>
+											Méthodes de datation
+										</b>
+
+										<div id="myRadioGroup">
+
+											<input type="radio" name="cars" value="twoCarDiv" />
+											DDR
+
+											<input type="radio" name="cars" value="threeCarDiv" />
+											Date début grossesse
+
+											<input type="radio" name="cars" value="fourCarDiv" />
+											Date echographique
+
+											<input type="radio" name="cars" value="fiveCarDiv" />
+											Date de conception
+											<br>
+											<div id="twoCarDiv" class="desc">
+												<br>
+												Date DDR
+												{{ form_widget(formP.date_ddr)}}
+
+											</div>
+
+											<div id="threeCarDiv" class="desc">
+												<br>
+												Age de grossesse en semaines
+												{{ form_widget(formP.age_grossesse_semaines)}}
+
+												Age de grossesse en jours
+												{{ form_widget(formP.age_grossesse_jours)}}
+											</div>
+
+											<div id="fourCarDiv" class="desc"></div>
+
+											<div id="fiveCarDiv" class="desc">
+												<br>
+												Date début conception
+												{{ form_widget(formP.date_deb_concep)}}
+												<br>
+												{{ form_widget(formP.type_grossesse)}}
+											</div>
+											<br>
+											Date échographie
+											{{ form_widget(formP.date_echo)}}
+										</div> <br>
+										<div style='display:flex;'>
+											<div style="    margin-top: 2%;">
+												{{ form_widget(formP.LCC_PBD)}}
+											</div>
+											<div style="margin-left:5%;width: 25%;">
+												{{ form_widget(formP.LCC_PBD_value)}}
+											</div>
+										</div>
+										<br><b>
+											Clarté nucale</b>
+										{{ form_widget(formP.Clarte_nucale)}}
+
+									</div>
+									<!-- /.card-body -->
+								</div>
+								<!-- /.card -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<button type="submit" class="btn btn-success" style="float:right;">Enregistrer</button>
+				{{ form_end(formP) }}
+				<br>
+				</form>
+
+		</div>
+{% endblock %}
